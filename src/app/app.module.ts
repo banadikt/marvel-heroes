@@ -8,6 +8,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { HeroesListComponent } from './features/heroes-list/heroes-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import {MatSortModule} from "@angular/material/sort";
     HttpClientModule,
     MatTableModule,
     MatSortModule,
+    MatInputModule,
+    MatChipsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,25 @@
 <div class="heroes-list-container">
+  <mat-form-field>
+    <mat-label>Filter by hero name</mat-label>
+    <mat-chip-grid #chipGrid>
+      <mat-chip-row
+        *ngFor="let name of selectedHeroNames"
+        [removable]="true"
+        (removed)="removeChip(name)">
+        {{ name }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    </mat-chip-grid>
+    <input
+      placeholder="add hero name"
+      [matChipInputFor]="chipGrid"
+      [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+      (matChipInputTokenEnd)="addChip($event)"
+    >
+  </mat-form-field>
+
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="nameLabel">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
