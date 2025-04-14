@@ -11,11 +11,18 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
+import { HeroDetailDialogComponent } from './features/hero-detail-dialog/hero-detail-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import { HeroFormDialogComponent } from './features/hero-form-dialog/hero-form-dialog.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesListComponent
+    HeroesListComponent,
+    HeroDetailDialogComponent,
+    HeroFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +34,9 @@ import {MatIconModule} from "@angular/material/icon";
     MatInputModule,
     MatChipsModule,
     MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

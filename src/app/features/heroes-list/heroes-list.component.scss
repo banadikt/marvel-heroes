@@ -1,4 +1,11 @@
 .heroes-list-container {
   max-width: 90%;
   margin: 50px auto;
+
+  .filter-create-component {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 }

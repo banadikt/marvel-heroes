@@ -1,0 +1,40 @@
+
+<h2 mat-dialog-title>{{ data.hero ? 'Edit Hero' : 'Create Hero' }}</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field style="width: 100%">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="nameLabel" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Gender</mat-label>
+      <input matInput formControlName="genderLabel" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Citizenship</mat-label>
+      <input matInput formControlName="citizenshipLabel" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Skills</mat-label>
+      <input matInput formControlName="skillsLabel" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Occupation</mat-label>
+      <input matInput formControlName="occupationLabel" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Member</mat-label>
+      <input matInput formControlName="memberOfLabel" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Creator</mat-label>
+      <input matInput formControlName="creatorLabel" required>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button type="submit" [disabled]="form.invalid">
+      {{ data.hero ? 'Save' : 'Create' }}
+    </button>
+  </mat-dialog-actions>
+</form>

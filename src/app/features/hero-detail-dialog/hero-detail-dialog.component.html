@@ -1,0 +1,26 @@
+<mat-dialog-content>
+  <div class="hero-detail-row">
+    <strong>Name:</strong> {{ data.nameLabel }}
+  </div>
+  <div class="hero-detail-row">
+    <strong>Gender:</strong> {{ data.genderLabel }}
+  </div>
+  <div class="hero-detail-row">
+    <strong>Citizenship:</strong> {{ data.citizenshipLabel }}
+  </div>
+  <div class="hero-detail-row">
+    <strong>Skills:</strong> {{ data.skillsLabel }}
+  </div>
+  <div class="hero-detail-row">
+    <strong>Occupation:</strong> {{ data.occupationLabel }}
+  </div>
+  <div class="hero-detail-row">
+    <strong>Member:</strong> {{ data.memberOfLabel }}
+  </div>
+  <div class="hero-detail-row">
+    <strong>Creator:</strong> {{ data.creatorLabel }}
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Close</button>
+</mat-dialog-actions>

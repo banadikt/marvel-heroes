@@ -43,4 +43,37 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.heroes.asObservable();
   }
+
+  addHero(newHero: Hero): void {
+    const currentHeroes = this.heroes.value;
+    const newId = currentHeroes.length > 0
+      ? Math.max(...currentHeroes.map(h => h.id!)) + 1
+      : 1;
+
+    const heroWithId = { ...newHero, id: newId };
+    const updatedHeroes = [ heroWithId, ...currentHeroes];
+
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(updatedHeroes));
+    this.heroes.next(updatedHeroes);
+  }
+
+  editHero(updatedHero: Hero): void {
+    const currentHeroes = this.heroes.value;
+    const index = currentHeroes.findIndex(hero => hero.id! === updatedHero.id);
+
+    if (index !== -1) {
+      currentHeroes[index] = updatedHero;
+      localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(currentHeroes));
+      this.heroes.next([...currentHeroes]);
+    }
+  }
+
+  deleteHero(heroId: number): void {
+    const currentHeroes = this.heroes.value;
+    const updatedHeroes = currentHeroes.filter(hero => hero.id! !== heroId);
+
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(updatedHeroes));
+    this.heroes.next(updatedHeroes);
+
+  }
 }

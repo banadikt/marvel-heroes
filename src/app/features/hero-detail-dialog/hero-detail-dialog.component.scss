@@ -1,0 +1,16 @@
+mat-dialog-content {
+  min-width: 500px;
+
+  .hero-detail-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+
+    strong {
+      min-width: 120px;
+      display: inline-block;
+    }
+  }
+}
+
+

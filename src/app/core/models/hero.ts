@@ -1,5 +1,5 @@
 export interface Hero {
-  id: number;
+  id?: number;
   nameLabel: string;
   genderLabel: string;
   citizenshipLabel: string;
