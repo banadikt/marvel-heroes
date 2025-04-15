@@ -16,13 +16,18 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { HeroFormDialogComponent } from './features/hero-form-dialog/hero-form-dialog.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { PieChartComponent } from './shared/pie-chart/pie-chart.component';
+import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesListComponent,
     HeroDetailDialogComponent,
-    HeroFormDialogComponent
+    HeroFormDialogComponent,
+    PieChartComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

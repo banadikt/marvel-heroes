@@ -4,8 +4,7 @@ import {Hero} from "../../core/models/hero";
 import {HeroService} from "../../core/services/hero.service";
 import {MatSort} from "@angular/material/sort";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {MatChipInput, MatChipInputEvent} from "@angular/material/chips";
-import {Router} from "@angular/router";
+import {MatChipInputEvent} from "@angular/material/chips";
 import {MatDialog} from "@angular/material/dialog";
 import {HeroDetailDialogComponent} from "../hero-detail-dialog/hero-detail-dialog.component";
 import {HeroFormDialogComponent} from "../hero-form-dialog/hero-form-dialog.component";
@@ -15,13 +14,14 @@ import {HeroFormDialogComponent} from "../hero-form-dialog/hero-form-dialog.comp
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss']
 })
+
 export class HeroesListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   readonly separatorKeyCodes = [ENTER, COMMA];
   selectedHeroNames: string[] = [];
 
   dataSource = new MatTableDataSource<Hero>();
-  displayedColumns = ['nameLabel', 'genderLabel', 'citizenshipLabel', 'skillsLabel', 'occupationLabel', 'memberOfLabel', 'creatorLabel', 'actions'];
+  displayedColumns: (keyof Hero | 'actions' )[] = ['nameLabel', 'genderLabel', 'citizenshipLabel', 'skillsLabel', 'occupationLabel', 'memberOfLabel', 'creatorLabel', 'actions'];
 
   constructor(
     private heroService: HeroService,
@@ -78,7 +78,7 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
     this.dialog.open(HeroDetailDialogComponent, { data: hero })
   }
 
-  openCreateDialog() {
+  openCreateDialog(): void {
     const dialogRef = this.dialog.open(HeroFormDialogComponent, { data: {} });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -98,8 +98,41 @@ export class HeroesListComponent implements OnInit, AfterViewInit {
     })
   }
 
-  deleteHero(heroId: number) {
+  deleteHero(heroId: number): void {
     this.heroService.deleteHero(heroId);
     this.loadHeroes();
+  }
+
+  getLabels(column: keyof Hero | 'actions'): string[] {
+    if (column === 'actions') {
+      return [];
+    }
+    const values = this.dataSource.data.map(hero => hero[column] as string);
+    return Array.from(new Set(values));
+  }
+
+  getCount(column: keyof Hero | 'actions'): number[] {
+    if (column === 'actions') {
+      return [];
+    }
+    const values = this.dataSource.data.map(hero => hero[column] as string);
+    const labels = this.getLabels(column)
+    return labels.map(label => values.filter(value => value === label).length);
+  }
+
+  getUniqueCount(column: keyof Hero | 'actions'): number {
+    if (column === 'actions') {
+      return 0;
+    }
+    return this.getLabels(column).length;
+  }
+
+  getChartData(column: keyof Hero | 'actions'): { name: string, value: number }[] {
+    if (column === 'actions') {
+      return []
+    }
+    const labels = this.getLabels(column);
+    const counts = this.getCount(column);
+    return labels.map((label, index) => ({ name: label, value: counts[index] }));
   }
 }
